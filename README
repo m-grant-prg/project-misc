@@ -1,0 +1,59 @@
+---------------
+AutoConf Macros
+===============
+--------
+Contents
+========
+
+1 ... Project Description
+
+2 ... The Macros
+
+3 ... Consumption
+
+
+-------------------------
+1 ... Project Description
+=========================
+This project contains a number of files containing related m4 macros for use
+with AutoConf.
+
+
+----------------
+2 ... The Macros
+================
+Script File: c-compiler.m4
+--------------------------
+
+a) ...	BUILD_COMPILER_VERSION_CFLAGS(CFLAGS_Variable)
+
+A macro to check the c compiler version in use and dynamically create a
+basic list of compiler warning flags and enter them in the supplied
+CFLAGS variable.
+
+Script File: java-vm.m4
+-----------------------
+
+a) ...	JAVA_VERSION_OK(Required_Java_Version, Start_Dir)
+
+A macro to check if the available jre version is greater than or equal
+to the parameter supplied version. If yes, the test is passed, if no the
+macro errors out of configure entirely.
+
+
+-----------------
+3 ... Consumption
+=================
+Nothing fancy, just:-
+
+a) ...	Drop the script file(s) containing the desired macro(s) into say the
+	project_root/m4extra directory of your project.
+
+b) ...	Enter the following line in your top level Makefile.am:-
+
+	ACLOCAL_AMFLAGS = -I m4 -I m4extra
+
+(The -I m4 is the conventional m4 directory).
+
+c) ...	Invoke the macro in your configure.ac
+
