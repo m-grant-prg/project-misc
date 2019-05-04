@@ -24,6 +24,9 @@
 #									#
 # 10/02/2019	MG	1.0.1	Initial release. Checked up to gcc v8.2	#
 # 02/03/2019	MG	1.0.2	Change file name to c-compiler.m4	#
+# 04/05/2019	MG	1.0.3	Remove manual specification of implicit	#
+#				fallthrough from v7 as it is included	#
+#				in Wextra.				#
 #									#
 #									#
 #########################################################################
@@ -40,10 +43,6 @@ AX_COMPILER_VERSION
 $1="-Wall -Wextra"
 if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
 	$1+=" -Wmissing-include-dirs -Wshadow -Wstrict-prototypes"
-	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "7")
-	if [[ x${ax_compare_version} == xtrue ]]; then
-		$1+=" -Wimplicit-fallthrough"
-	fi
 	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "8")
 	if [[ x${ax_compare_version} == xtrue ]]; then
 		$1+=" -Wmultistatement-macros"
@@ -52,3 +51,4 @@ fi
 AC_MSG_NOTICE(CFLAGS to be used are $$1)
 AC_MSG_NOTICE(placing compiler-dependent CFLAGS in $1 ... done)
 ])
+
