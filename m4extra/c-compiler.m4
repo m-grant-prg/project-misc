@@ -24,10 +24,12 @@
 #									#
 # 10/02/2019	MG	1.0.1	Initial release. Checked up to gcc v8.2	#
 # 02/03/2019	MG	1.0.2	Change file name to c-compiler.m4	#
-# 04/05/2019	MG	1.0.3	Remove manual specification of implicit	#
+# 05/05/2019	MG	1.0.3	Remove manual specification of implicit	#
 #				fallthrough from v7 as it is included	#
 #				in Wextra.				#
-#									#
+#				Establish baseline warnings as of	#
+#				gcc v6.3				#
+#				Checked up to v9.1			#
 #									#
 #########################################################################
 
@@ -42,7 +44,12 @@ AX_COMPILER_VERSION
 # The following 2 options seem fairly universal.
 $1="-Wall -Wextra"
 if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
-	$1+=" -Wmissing-include-dirs -Wshadow -Wstrict-prototypes"
+	# The following non version specific inclusions form the baseline for
+	# this macro from gcc v6.3
+	$1+=" -Wbad-function-cast -Wconversion -Wduplicated-cond"
+	$1+=" -Wmissing-include-dirs -Wmissing-prototypes"
+	$1+=" -Wnull-dereference -Wredundant-decls"
+	$1+=" -Wshadow -Wstrict-prototypes"
 	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "8")
 	if [[ x${ax_compare_version} == xtrue ]]; then
 		$1+=" -Wmultistatement-macros"
