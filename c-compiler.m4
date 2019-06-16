@@ -30,6 +30,8 @@
 #				Establish baseline warnings as of	#
 #				gcc v6.3				#
 #				Checked up to v9.1			#
+# 16/06/2019	MG	1.0.4	Backported to gcc v5 to facilitate use	#
+#				with xenial build VMs on Travis CI.	#
 #									#
 #########################################################################
 
@@ -45,11 +47,14 @@ AX_COMPILER_VERSION
 $1="-Wall -Wextra"
 if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
 	# The following non version specific inclusions form the baseline for
-	# this macro from gcc v6.3
-	$1+=" -Wbad-function-cast -Wconversion -Wduplicated-cond"
-	$1+=" -Wmissing-include-dirs -Wmissing-prototypes"
-	$1+=" -Wnull-dereference -Wredundant-decls"
+	# this macro from gcc v5.4
+	$1+=" -Wbad-function-cast -Wconversion -Wmissing-include-dirs"
+	$1+=" -Wmissing-prototypes -Wredundant-decls"
 	$1+=" -Wshadow -Wstrict-prototypes"
+	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "6")
+	if [[ x${ax_compare_version} == xtrue ]]; then
+		$1+=" -Wduplicated-cond -Wnull-dereference"
+	fi
 	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "8")
 	if [[ x${ax_compare_version} == xtrue ]]; then
 		$1+=" -Wmultistatement-macros"
