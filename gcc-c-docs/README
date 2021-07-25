@@ -6,3 +6,11 @@ be added to the command line in the script file. Once this is up to date the
 file gcc6.3-disabled-warnings-after-wall-wextra-manual.txt contains a list of
 warnings which remain disabled after Wall, Wextra and the manual additions.
 
+dpkg-buildflags*.txt
+--------------------
+These files show the standard Debian build flags for the named releases.
+
+references.txt
+--------------
+URL's to reference documents.
+

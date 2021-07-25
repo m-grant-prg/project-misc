@@ -1,0 +1,15 @@
+dpkg-buildflags: status: vendor is Debian
+dpkg-buildflags: status: hardening features: bindnow=no format=yes fortify=yes pie=yes relro=yes stackprotector=yes stackprotectorstrong=yes
+dpkg-buildflags: status: qa features: bug=no canary=no
+dpkg-buildflags: status: reproducible features: fixdebugpath=yes timeless=yes
+dpkg-buildflags: status: sanitize features: address=no leak=no thread=no undefined=no
+dpkg-buildflags: status: CFLAGS [vendor]: -g -O2 -fdebug-prefix-map=/=. -fstack-protector-strong -Wformat -Werror=format-security
+dpkg-buildflags: status: CPPFLAGS [vendor]: -Wdate-time -D_FORTIFY_SOURCE=2
+dpkg-buildflags: status: CXXFLAGS [vendor]: -g -O2 -fdebug-prefix-map=/=. -fstack-protector-strong -Wformat -Werror=format-security
+dpkg-buildflags: status: FCFLAGS [vendor]: -g -O2 -fdebug-prefix-map=/=. -fstack-protector-strong
+dpkg-buildflags: status: FFLAGS [vendor]: -g -O2 -fdebug-prefix-map=/=. -fstack-protector-strong
+dpkg-buildflags: status: GCJFLAGS [vendor]: -g -O2 -fdebug-prefix-map=/=. -fstack-protector-strong
+dpkg-buildflags: status: LDFLAGS [vendor]: -Wl,-z,relro
+dpkg-buildflags: status: OBJCFLAGS [vendor]: -g -O2 -fdebug-prefix-map=/=. -fstack-protector-strong -Wformat -Werror=format-security
+dpkg-buildflags: status: OBJCXXFLAGS [vendor]: -g -O2 -fdebug-prefix-map=/=. -fstack-protector-strong -Wformat -Werror=format-security
+

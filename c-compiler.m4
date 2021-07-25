@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 #########################################################################
 #									#
-# Macro ID: m4extra/c-compiler.m4					#
-# Author: Copyright (C) 2019  Mark Grant				#
+# Macro ID: m4extra/c-compiler.m4						#
+# Author: Copyright (C) 2019, 2021  Mark Grant				#
 #									#
 # Released under the GPLv3 or later.					#
 # SPDX-License-Identifier: GPL-3.0-or-later				#
@@ -12,7 +12,7 @@
 #									#
 # Check gcc version changes here:-					#
 #	https://www.gnu.org/software/gcc/				#
-#			and check under Changes and C-Family.		#
+#			and check under Changes, C-Family and C.	#
 #									#
 #########################################################################
 
@@ -32,6 +32,10 @@
 #				Checked up to v9.1			#
 # 16/06/2019	MG	1.0.4	Backported to gcc v5 to facilitate use	#
 #				with xenial build VMs on Travis CI.	#
+# 24/07/2021	MG	1.0.5	Add Wformat-security			#
+#				Add fasynchronous-unwind-tables		#
+#				Add -fstack-clash-protection		#
+#				Checked up to v11.1			#
 #									#
 #########################################################################
 
@@ -48,15 +52,18 @@ $1="-Wall -Wextra"
 if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
 	# The following non version specific inclusions form the baseline for
 	# this macro from gcc v5.4
-	$1+=" -Wbad-function-cast -Wconversion -Wmissing-include-dirs"
-	$1+=" -Wmissing-prototypes -Wredundant-decls"
+	$1+=" -fstack-protector-strong"
+	$1+=" -Wbad-function-cast -Wconversion -Wformat-security"
+	$1+=" -Wmissing-include-dirs -Wmissing-prototypes -Wredundant-decls"
 	$1+=" -Wshadow -Wstrict-prototypes"
 	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "6")
 	if [[ x${ax_compare_version} == xtrue ]]; then
+		$1+=" -fasynchronous-unwind-tables"
 		$1+=" -Wduplicated-cond -Wnull-dereference"
 	fi
 	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "8")
 	if [[ x${ax_compare_version} == xtrue ]]; then
+		$1+=" -fstack-clash-protection"
 		$1+=" -Wmultistatement-macros"
 	fi
 fi
