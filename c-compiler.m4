@@ -36,6 +36,9 @@
 #				Add fasynchronous-unwind-tables		#
 #				Add -fstack-clash-protection		#
 #				Checked up to v11.1			#
+# 25/07/2021	MG	1.0.6	Add g to always provide some debug	#
+#				information.				#
+#				Add grecord-gcc-switches		#
 #									#
 #########################################################################
 
@@ -47,12 +50,13 @@ AC_DEFUN([BUILD_COMPILER_VERSION_CFLAGS],
 AC_SUBST($1)
 AX_COMPILER_VENDOR
 AX_COMPILER_VERSION
-# The following 2 options seem fairly universal.
-$1="-Wall -Wextra"
+# The basic starting point.
+$1="-g -Wall -Wextra"
 if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
 	# The following non version specific inclusions form the baseline for
 	# this macro from gcc v5.4
 	$1+=" -fstack-protector-strong"
+	$1+=" -grecord-gcc-switches"
 	$1+=" -Wbad-function-cast -Wconversion -Wformat-security"
 	$1+=" -Wmissing-include-dirs -Wmissing-prototypes -Wredundant-decls"
 	$1+=" -Wshadow -Wstrict-prototypes"
