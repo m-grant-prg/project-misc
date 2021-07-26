@@ -39,8 +39,23 @@
 # 25/07/2021	MG	1.0.6	Add g to always provide some debug	#
 #				information.				#
 #				Add grecord-gcc-switches		#
+# 26/07/2021	MG	1.0.7	Add function for preprocessor flags.	#
 #									#
 #########################################################################
+
+
+# BUILD_COMPILER_VERSION_CPPFLAGS(CPPFLAGS_Variable)
+# --------------------------------------------------
+AC_DEFUN([BUILD_COMPILER_VERSION_CPPFLAGS],
+[AC_MSG_NOTICE(placing compiler-dependent CPPFLAGS in $1 - starting ...)
+AC_SUBST($1)
+AX_COMPILER_VENDOR
+AX_COMPILER_VERSION
+# The basic starting point.
+$1="-D_FORTIFY_SOURCE=2 -Wdate-time"
+AC_MSG_NOTICE(CPPFLAGS to be used are $$1)
+AC_MSG_NOTICE(placing compiler-dependent CPPFLAGS in $1 ... done)
+])
 
 
 # BUILD_COMPILER_VERSION_CFLAGS(CFLAGS_Variable)
