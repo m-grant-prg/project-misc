@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 #########################################################################
 #									#
-# Macro ID: m4extra/c-compiler.m4						#
+# Macro ID: m4extra/c-compiler.m4					#
 # Author: Copyright (C) 2019, 2021  Mark Grant				#
 #									#
 # Released under the GPLv3 or later.					#
@@ -40,6 +40,10 @@
 #				information.				#
 #				Add grecord-gcc-switches		#
 # 26/07/2021	MG	1.0.7	Add function for preprocessor flags.	#
+# 28/09/2021	MG	1.0.8	Specify gcc starting point -std=gnu11	#
+#				to satisfy sparse, but this allows	#
+#				mixed declarations and code, so		#
+#				re-introduce that warning.		#
 #									#
 #########################################################################
 
@@ -72,7 +76,9 @@ if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
 	# this macro from gcc v5.4
 	$1+=" -fstack-protector-strong"
 	$1+=" -grecord-gcc-switches"
+	$1+=" -std=gnu11"
 	$1+=" -Wbad-function-cast -Wconversion -Wformat-security"
+	$1+=" -Wdeclaration-after-statement"
 	$1+=" -Wmissing-include-dirs -Wmissing-prototypes -Wredundant-decls"
 	$1+=" -Wshadow -Wstrict-prototypes"
 	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "6")
