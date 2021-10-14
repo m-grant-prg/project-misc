@@ -44,6 +44,7 @@
 #				to satisfy sparse, but this allows	#
 #				mixed declarations and code, so		#
 #				re-introduce that warning.		#
+# 14/10/2021	MG	1.0.9	Specify macro HAVE_WINSOCK2_H as false.	#
 #									#
 #########################################################################
 
@@ -56,7 +57,7 @@ AC_SUBST($1)
 AX_COMPILER_VENDOR
 AX_COMPILER_VERSION
 # The basic starting point.
-$1="-D_FORTIFY_SOURCE=2 -Wdate-time"
+$1="-D_FORTIFY_SOURCE=2 -DHAVE_WINSOCK2_H=0 -Wdate-time"
 AC_MSG_NOTICE(CPPFLAGS to be used are $$1)
 AC_MSG_NOTICE(placing compiler-dependent CPPFLAGS in $1 ... done)
 ])
