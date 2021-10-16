@@ -1,6 +1,0 @@
-https://developers.redhat.com/blog/2018/03/21/compiler-and-linker-flags-gcc
-
-https://manpages.ubuntu.com/manpages/trusty/man1/dpkg-buildflags.1.html
-
-man feature_test_macros
-
