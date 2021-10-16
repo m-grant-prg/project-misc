@@ -1,0 +1,92 @@
+#########################################################################
+#									#
+# File ID: ./.gitignore							#
+# Author: Copyright (C) 2015-2019, 2021  Mark Grant			#
+#									#
+# Released under the GPLv3 only.					#
+# SPDX-License-Identifier: GPL-3.0					#
+#									#
+# N.B.									#
+# If a file pattern to be ignored can only exist in a specific		#
+# subdirectory, please add it to a gitignore file in that subdirectory.	#
+#									#
+# N.B.									#
+# After changes to any gitignore file please run			#
+#		'git ls-files -i --exclude-standard'			#
+# to determine if any tracked files are now ignored.			#
+#									#
+#########################################################################
+
+#########################################################################
+#									#
+# Changelog								#
+#									#
+# Date		Author	Version	Description				#
+#									#
+# 07/06/2019	MG	1.0.1	Initial release.			#
+# 16/06/2019	MG	1.0.2	Add test-driver which is auto-generated	#
+#				when make check is setup and TESTS run.	#
+# 18/07/2021	MG	1.0.3	Add ctags.				#
+#				Refine AutoTools section.		#
+# 27/09/2021	MG	1.0.4	Add exclusion of tags temporary files.	#
+# 28/09/2021	MG	1.0.5	Add exclusion of .bak files.		#
+#									#
+#########################################################################
+
+# AutoTools
+compile
+config.guess
+config.sub
+configure
+configure.scan
+depcomp
+INSTALL
+install-sh
+ltmain.sh
+missing
+test-driver
+**/*.la
+**/*.lo
+**/*.o
+**/.deps/
+**/.dirstamp
+**/.libs/
+**/aclocal.*
+**/ar-lib
+**/autom4te.cache/
+**/config.h.in
+**/libtool
+**/Makefile
+**/Makefile.in
+
+# Backup Files
+**/*~
+**/*.bak
+**/*.swp
+
+# C Extras
+**/cscope.*
+
+# Ctags
+**/tags
+**/tags.*
+
+# General
+**/*.log
+**/*.tar.gz
+**/patches
+
+# Java Extras
+**/Version.java
+
+# My Project Structure
+**/atbuild
+**/conffiles
+
+# NetBeans
+**/build
+**/dist
+**/distribution
+**/target
+/nbproject/private/
+
