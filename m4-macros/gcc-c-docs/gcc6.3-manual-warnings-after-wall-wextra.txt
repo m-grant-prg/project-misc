@@ -1,0 +1,10 @@
+-Wbad-function-cast
+-Wconversion
+-Wduplicated-cond
+-Wmissing-include-dirs
+-Wmissing-prototypes
+-Wnull-dereference
+-Wredundant-decls
+-Wshadow
+-Wstrict-prototypes
+

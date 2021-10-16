@@ -1,0 +1,16 @@
+gcc6.3* Files
+-------------
+These files are used to form the baseline list of warnings to enable. Warnings
+to be added manually are in gcc6.3-manual-warnings... and the contents have to
+be added to the command line in the script file. Once this is up to date the
+file gcc6.3-disabled-warnings-after-wall-wextra-manual.txt contains a list of
+warnings which remain disabled after Wall, Wextra and the manual additions.
+
+dpkg-buildflags*.txt
+--------------------
+These files show the standard Debian build flags for the named releases.
+
+references.txt
+--------------
+URL's to reference documents.
+
