@@ -1,6 +1,6 @@
----------------
-AutoConf Macros
-===============
+------------
+Project Misc
+============
 --------
 Contents
 ========
@@ -9,15 +9,19 @@ Contents
 
 2 ... The Macros
 
-3 ... Consumption
+3 ... Macro Consumption
 
 
 -------------------------
 1 ... Project Description
 =========================
-This project contains a number of files containing related m4 macros for use
-with AutoConf.
+This project contains:-
 
+A number of files containing related m4 macros for use with AutoConf.
+
+Useful git files.
+
+Useful clang files.
 
 ----------------
 2 ... The Macros
@@ -31,6 +35,10 @@ A macro to check the c compiler version in use and dynamically create a
 basic list of compiler warning flags and enter them in the supplied
 CFLAGS variable.
 
+b) ...BUILD_COMPILER_VERSION_CPPFLAGS(CPPFLAGS_Variable)
+
+A macro to build a list of pre-processor flags.
+
 Script File: java-vm.m4
 -----------------------
 
@@ -40,10 +48,16 @@ A macro to check if the available jre version is greater than or equal
 to the parameter supplied version. If yes, the test is passed, if no the
 macro errors out of configure entirely.
 
+Script file linker.m4
+---------------------
 
------------------
-3 ... Consumption
-=================
+a) ... BUILD_LDFLAGS(LDFLAGS_Variable)
+
+A macro to build a list of linker flags.
+
+-----------------------
+3 ... Macro Consumption
+=======================
 Nothing fancy, just:-
 
 a) ...	Drop the script file(s) containing the desired macro(s) into say the
