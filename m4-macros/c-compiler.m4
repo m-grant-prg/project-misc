@@ -8,7 +8,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later				#
 #									#
 # Purpose:								#
-# Build a variable containing CFLAGS depending on compiler version.	#
+# Build variables containing normal / debug pre-processor and compiler	#
+# flags depending on compiler version.					#
 #									#
 # Check gcc version changes here:-					#
 #	https://www.gnu.org/software/gcc/				#
@@ -45,29 +46,38 @@
 #				mixed declarations and code, so		#
 #				re-introduce that warning.		#
 # 14/10/2021	MG	1.0.9	Specify macro HAVE_WINSOCK2_H as false.	#
+# 05/11/2021	MG	1.0.10	Create debug versions of flags.		#
 #									#
 #########################################################################
 
 
-# BUILD_COMPILER_VERSION_CPPFLAGS(CPPFLAGS_Variable)
-# --------------------------------------------------
+# BUILD_COMPILER_VERSION_CPPFLAGS(CPPFLAGS_Variable, CPPFLAGS_Debug_Variable)
+# ---------------------------------------------------------------------------
 AC_DEFUN([BUILD_COMPILER_VERSION_CPPFLAGS],
 [AC_MSG_NOTICE(placing compiler-dependent CPPFLAGS in $1 - starting ...)
+AC_MSG_NOTICE(placing compiler-dependent debug CPPFLAGS in $2 - starting ...)
 AC_SUBST($1)
+AC_SUBST($2)
 AX_COMPILER_VENDOR
 AX_COMPILER_VERSION
 # The basic starting point.
-$1="-D_FORTIFY_SOURCE=2 -DHAVE_WINSOCK2_H=0 -Wdate-time"
+$1="-DHAVE_WINSOCK2_H=0 -Wdate-time"
+$2=$$1
+$1+=" -D_FORTIFY_SOURCE=2"
 AC_MSG_NOTICE(CPPFLAGS to be used are $$1)
 AC_MSG_NOTICE(placing compiler-dependent CPPFLAGS in $1 ... done)
+AC_MSG_NOTICE(Debug CPPFLAGS to be used are $$2)
+AC_MSG_NOTICE(placing compiler-dependent debug CPPFLAGS in $2 ... done)
 ])
 
 
-# BUILD_COMPILER_VERSION_CFLAGS(CFLAGS_Variable)
-# ----------------------------------------------
+# BUILD_COMPILER_VERSION_CFLAGS(CFLAGS_Variable, CFLAGS_Debug_Variable)
+# ---------------------------------------------------------------------
 AC_DEFUN([BUILD_COMPILER_VERSION_CFLAGS],
 [AC_MSG_NOTICE(placing compiler-dependent CFLAGS in $1 - starting ...)
+AC_MSG_NOTICE(placing compiler-dependent debug CFLAGS in $2 - starting ...)
 AC_SUBST($1)
+AC_SUBST($2)
 AX_COMPILER_VENDOR
 AX_COMPILER_VERSION
 # The basic starting point.
@@ -93,7 +103,13 @@ if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
 		$1+=" -Wmultistatement-macros"
 	fi
 fi
+$2=$$1
+# Optimisation
+$1+=" -O2"
+$2+=" -ggdb3 -O0"
 AC_MSG_NOTICE(CFLAGS to be used are $$1)
 AC_MSG_NOTICE(placing compiler-dependent CFLAGS in $1 ... done)
+AC_MSG_NOTICE(Debug CFLAGS to be used are $$2)
+AC_MSG_NOTICE(placing compiler-dependent debug CFLAGS in $2 ... done)
 ])
 
