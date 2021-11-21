@@ -4,8 +4,8 @@
 # Macro ID: m4extra/c-compiler.m4					#
 # Author: Copyright (C) 2019, 2021  Mark Grant				#
 #									#
-# Released under the GPLv3 or later.					#
-# SPDX-License-Identifier: GPL-3.0-or-later				#
+# Released under the GPLv3 only.					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 # Build variables containing normal / debug pre-processor and compiler	#
@@ -47,6 +47,7 @@
 #				re-introduce that warning.		#
 # 14/10/2021	MG	1.0.9	Specify macro HAVE_WINSOCK2_H as false.	#
 # 05/11/2021	MG	1.0.10	Create debug versions of flags.		#
+# 21/11/2021	MG	1.0.11	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

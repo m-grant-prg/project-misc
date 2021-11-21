@@ -4,8 +4,8 @@
 # Macro ID: m4extra/linker.m4						#
 # Author: Copyright (C) 2021  Mark Grant				#
 #									#
-# Released under the GPLv3 or later.					#
-# SPDX-License-Identifier: GPL-3.0-or-later				#
+# Released under the GPLv3 only.					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 # Build a variable containing LDFLAGS.					#
@@ -19,6 +19,7 @@
 # Date		Author	Version	Description				#
 #									#
 # 26/07/2021	MG	1.0.1	Initial release.			#
+# 21/11/2021	MG	1.0.2	Tighten SPDX tag.			#
 #									#
 #########################################################################
 
