@@ -1,0 +1,150 @@
+" vim start up file.
+
+" Indentation
+" -----------
+set autoindent		" Auto indent code files.
+set smartindent		" Smart indentation for source files.
+
+" General
+" -------
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching
+set autowrite		" Automatically save before commands like :next
+set hidden		" Hide buffers when they are abandoned
+set mouse=a		" Enable mouse usage (all modes)
+set wildmode=longest,list	" Tab completion similar to bash
+set history=200		" 200 lines of history
+set lazyredraw		" redraw only when we need to.
+set number		" Show line numbers.
+set colorcolumn=80	" Show a vertical line at column 80.
+set secure		" Allow execution in other files if owned by me
+
+" Allow long lines when inserting but allow gqq (line) and gqip (paragraph)
+" re-format based on textwidth.
+" -----------------------------
+set textwidth=80	" Word wrap at 80 characters.
+set formatoptions-=t	" Do not auto-wrap text using textwidth.
+set formatoptions +=l	" Do not break long lines in insert mode.
+
+" Wrap at 72 columns for git commit messages.
+" -------------------------------------------
+autocmd FileType gitcommit setlocal textwidth=72
+
+" Plugins managed by vim-plug
+" ---------------------------
+call plug#begin()
+Plug 'preservim/NERDTree'
+Plug 'frazrepo/vim-rainbow'
+Plug 'airblade/vim-gitgutter'
+Plug 'yegappan/taglist'		" Invoke with Tlist
+Plug 'thinca/vim-localrc'
+" Colorschemes
+Plug 'toupeira/vim-desertink'
+Plug 'agude/vim-eldar'
+Plug 'gvee-s/simo-zz-2'
+Plug 'ludovicchabant/vim-gutentags'
+call plug#end()
+
+" Gutentags
+" ---------
+" To ignore Bazaar etc.
+let g:gutentags_project_root=['.git']
+let g:gutentags_add_default_project_roots=0
+
+" AutoComplete
+" ------------
+set completeopt=longest,menuone	" Do not select first item, just
+					" longest matching part.
+					" Show menu even if only one match.
+" Allow Enter to act like C-y
+:inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" <C-N> will still work normally. However, when the menu appears, the <Down> key
+" will be simulated keeping a menu item always highlighted. This way you can
+" keep typing characters to narrow the matches, and the nearest match will be
+" selected so that you can hit Enter at any time to insert it.
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" This simulates <C-X><C-O> to bring up the omni completion menu, then it
+" simulates <C-N><C-P> to remove the longest common text, and finally it
+" simulates <Down> again to keep a match highlighted.
+inoremap <expr> <C-x><C-o> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" Searching
+" ---------
+set incsearch		" Incremental search
+set hlsearch		" Highlight matches
+" Turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
+" Spelling
+" --------
+set spell spelllang=en_gb
+set nospell
+
+" Folding
+" -------
+set foldenable		" Enable folding
+set foldlevelstart=10	" Open most folds by default
+set foldnestmax=10	" 10 nested fold max
+set foldmethod=syntax	" Fold based on indent level
+" Space open/closes folds
+nnoremap <space> za
+
+" Filetypes
+" ---------
+filetype indent on	" Try to identify filetypes and load any specific
+			" indent files.
+filetype plugin on	" Load plugins based on filetypes.
+
+" Syntax
+" ------
+syntax on		" Syntax highlighting on.
+
+" Screen settings.
+" ----------------
+" Colorscheme now that the plugins are installed
+colorscheme eldar
+" Cursor line highlighting
+set cursorline		" Highlight current line
+hi CursorLine cterm=NONE ctermbg=white ctermfg=black
+
+" Centre the cursor vertically in the window
+augroup VCenterCursor
+	au!
+	au BufEnter,WinEnter,WinNew,VimResized *,*.*
+		\ let &scrolloff=winheight(win_getid())/2
+augroup END
+
+" Functions
+" ---------
+" Remove trailing whitespace in entire buffer and leave cursor position
+" unchanged.
+function! <SID>StripTrailingWhitespace()
+	let l = line(".")
+	let c = col(".")
+	%s/\s\+$//e
+	call cursor(l, c)
+endfunction
+
+" Remove trailing whitespace for designated filetypes.
+" autocmd FileType automake,c,config,cpp,h,java,man,sh,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespace()
+" Remove trailing whitespace for all filetypes.
+autocmd BufWritePre * :call <SID>StripTrailingWhitespace()
+
+" Open a browser tab to preview a markdown buffer. cmd = \om
+noremap <leader>om :call OpenMarkdownPreview()<cr>
+function! OpenMarkdownPreview() abort
+	if exists('s:markdown_job_id')
+		if job_status(s:markdown_job_id) == "run"
+    			call job_stop(s:markdown_job_id)
+  		endif
+  		unlet s:markdown_job_id
+	endif
+	let s:markdown_job_id = job_start("grip -b -",
+		\ {'in_io': 'buffer', 'in_name': bufname("%") })
+endfunction
+
