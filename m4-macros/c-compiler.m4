@@ -49,13 +49,14 @@
 # 05/11/2021	MG	1.0.10	Create debug versions of flags.		#
 # 21/11/2021	MG	1.0.11	Tighten SPDX tag.			#
 # 06/06/2022	MG	1.1.1	Add gcc analyzer CFLAGS.		#
+#				Create new namespace MG_.		#
 #									#
 #########################################################################
 
 
-# BUILD_COMPILER_VERSION_CPPFLAGS(CPPFLAGS_Variable, CPPFLAGS_Debug_Variable)
-# ---------------------------------------------------------------------------
-AC_DEFUN([BUILD_COMPILER_VERSION_CPPFLAGS],
+# MG_BUILD_COMPILER_VERSION_CPPFLAGS(CPPFLAGS_Variable, CPPFLAGS_Debug_Variable)
+# ------------------------------------------------------------------------------
+AC_DEFUN([MG_BUILD_COMPILER_VERSION_CPPFLAGS],
 [AC_MSG_NOTICE(placing compiler-dependent CPPFLAGS in $1 - starting ...)
 AC_MSG_NOTICE(placing compiler-dependent debug CPPFLAGS in $2 - starting ...)
 AC_SUBST($1)
@@ -73,9 +74,9 @@ AC_MSG_NOTICE(placing compiler-dependent debug CPPFLAGS in $2 ... done)
 ])
 
 
-# BUILD_COMPILER_VERSION_CFLAGS(CFLAGS_Variable, CFLAGS_Debug_Variable)
-# ---------------------------------------------------------------------
-AC_DEFUN([BUILD_COMPILER_VERSION_CFLAGS],
+# MG_BUILD_COMPILER_VERSION_CFLAGS(CFLAGS_Variable, CFLAGS_Debug_Variable)
+# ------------------------------------------------------------------------
+AC_DEFUN([MG_BUILD_COMPILER_VERSION_CFLAGS],
 [AC_MSG_NOTICE(placing compiler-dependent CFLAGS in $1 - starting ...)
 AC_MSG_NOTICE(placing compiler-dependent debug CFLAGS in $2 - starting ...)
 AC_SUBST($1)
@@ -116,9 +117,9 @@ AC_MSG_NOTICE(placing compiler-dependent debug CFLAGS in $2 ... done)
 ])
 
 
-# BUILD_COMPILER_VERSION_ANALYZER_CFLAGS(ANALYZER_CFLAGS_Variable)
-# ----------------------------------------------------------------
-AC_DEFUN([BUILD_COMPILER_VERSION_ANALYZER_CFLAGS],
+# MG_BUILD_COMPILER_VERSION_ANALYZER_CFLAGS(ANALYZER_CFLAGS_Variable)
+# -------------------------------------------------------------------
+AC_DEFUN([MG_BUILD_COMPILER_VERSION_ANALYZER_CFLAGS],
 [AC_MSG_NOTICE(placing analyzer compiler-dependent CFLAGS in $1 - starting ...)
 AC_SUBST($1)
 AX_COMPILER_VENDOR
