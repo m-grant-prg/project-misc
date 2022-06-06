@@ -2,7 +2,7 @@
 #########################################################################
 #									#
 # Macro ID: m4extra/c-compiler.m4					#
-# Author: Copyright (C) 2019, 2021  Mark Grant				#
+# Author: Copyright (C) 2019, 2021, 2022  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -48,6 +48,7 @@
 # 14/10/2021	MG	1.0.9	Specify macro HAVE_WINSOCK2_H as false.	#
 # 05/11/2021	MG	1.0.10	Create debug versions of flags.		#
 # 21/11/2021	MG	1.0.11	Tighten SPDX tag.			#
+# 06/06/2022	MG	1.1.1	Add gcc analyzer CFLAGS.		#
 #									#
 #########################################################################
 
@@ -112,5 +113,24 @@ AC_MSG_NOTICE(CFLAGS to be used are $$1)
 AC_MSG_NOTICE(placing compiler-dependent CFLAGS in $1 ... done)
 AC_MSG_NOTICE(Debug CFLAGS to be used are $$2)
 AC_MSG_NOTICE(placing compiler-dependent debug CFLAGS in $2 ... done)
+])
+
+
+# BUILD_COMPILER_VERSION_ANALYZER_CFLAGS(ANALYZER_CFLAGS_Variable)
+# ----------------------------------------------------------------
+AC_DEFUN([BUILD_COMPILER_VERSION_ANALYZER_CFLAGS],
+[AC_MSG_NOTICE(placing analyzer compiler-dependent CFLAGS in $1 - starting ...)
+AC_SUBST($1)
+AX_COMPILER_VENDOR
+AX_COMPILER_VERSION
+$1=""
+if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
+	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "10")
+	if [[ x${ax_compare_version} == xtrue ]]; then
+		$1=" -fanalyzer"
+	fi
+fi
+AC_MSG_NOTICE(analyzer CFLAGS to be used are $$1)
+AC_MSG_NOTICE(placing analyzer compiler-dependent CFLAGS in $1 ... done)
 ])
 
