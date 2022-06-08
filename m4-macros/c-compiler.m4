@@ -50,6 +50,7 @@
 # 21/11/2021	MG	1.0.11	Tighten SPDX tag.			#
 # 06/06/2022	MG	1.1.1	Add gcc analyzer CFLAGS.		#
 #				Create new namespace MG_.		#
+#				Checked up to v12.1			#
 #									#
 #########################################################################
 
