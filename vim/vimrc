@@ -42,6 +42,7 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'airblade/vim-gitgutter'
 Plug 'yegappan/taglist'		" Invoke with Tlist
 Plug 'thinca/vim-localrc'
+Plug 'editorconfig/editorconfig-vim'
 " Colorschemes
 Plug 'toupeira/vim-desertink'
 Plug 'agude/vim-eldar'
