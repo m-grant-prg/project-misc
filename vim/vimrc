@@ -33,7 +33,9 @@ set formatoptions +=l	" Do not break long lines in insert mode.
 autocmd FileType gitcommit setlocal textwidth=72
 
 " Plugins managed by vim-plug
-" ---------------------------
+" To upgrade vim-plug itself :PlugUpgrade
+" To upgrade other plugins :PlugUpdate
+" ------------------------------------
 call plug#begin()
 Plug 'preservim/NERDTree'
 Plug 'frazrepo/vim-rainbow'
