@@ -16,6 +16,7 @@
 #									#
 # 09/08/2022	MG	1.0.1	Initial version.			#
 # 09/08/2022	MG	1.0.2	Add YAML.				#
+# 09/08/2022	MG	1.0.3	Add trim_trailing_whitespace.		#
 #									#
 #########################################################################
 
@@ -26,6 +27,7 @@ root = true
 charset = utf-8
 end_of_line = lf
 insert_final_newline = true
+trim_trailing_whitespace = true
 
 # If clang-format is used then values for .c and .h files must agree both here
 # and in .clang-format.
