@@ -33,6 +33,8 @@ set formatoptions +=l	" Do not break long lines in insert mode.
 autocmd FileType gitcommit setlocal textwidth=72
 
 " Plugins managed by vim-plug
+" To install a plugin, enter it's GitHub location below, restart vim and
+" :PlugInstall
 " To upgrade vim-plug itself :PlugUpgrade
 " To upgrade other plugins :PlugUpdate
 " ------------------------------------
