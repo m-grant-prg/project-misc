@@ -51,6 +51,7 @@
 # 06/06/2022	MG	1.1.1	Add gcc analyzer CFLAGS.		#
 #				Create new namespace MG_.		#
 #				Checked up to v12.1			#
+# 22/08/2022	MG	1.2.1	Add support for clang from v11.0	#
 #									#
 #########################################################################
 
@@ -106,6 +107,20 @@ if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
 		$1+=" -fstack-clash-protection"
 		$1+=" -Wmultistatement-macros"
 	fi
+fi
+if [[ $ax_cv_c_compiler_vendor == clang ]]; then
+	# The following non version specific inclusions form the baseline for
+	# this macro from clang v11.0
+	$1+=" -fstack-protector-strong"
+	$1+=" -grecord-gcc-switches"
+	$1+=" -std=gnu11"
+	$1+=" -Wbad-function-cast -Wconversion -Wformat-security"
+	$1+=" -Wdeclaration-after-statement"
+	$1+=" -Wmissing-include-dirs -Wmissing-prototypes -Wredundant-decls"
+	$1+=" -Wshadow -Wstrict-prototypes"
+	$1+=" -fasynchronous-unwind-tables"
+	$1+=" -Wnull-dereference"
+	$1+=" -fstack-clash-protection"
 fi
 $2=$$1
 # Optimisation
