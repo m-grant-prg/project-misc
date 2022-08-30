@@ -52,6 +52,7 @@
 #				Create new namespace MG_.		#
 #				Checked up to v12.1			#
 # 22/08/2022	MG	1.2.1	Add support for clang from v11.0	#
+# 30/08/2022	MG	1.2.2	Refactor to a common gcc clang baseline.#
 #									#
 #########################################################################
 
@@ -65,10 +66,15 @@ AC_SUBST($1)
 AC_SUBST($2)
 AX_COMPILER_VENDOR
 AX_COMPILER_VERSION
+
 # The basic starting point.
-$1="-DHAVE_WINSOCK2_H=0 -Wdate-time"
+$1="-DHAVE_WINSOCK2_H=0"
+$1+=" -Wdate-time"
+
 $2=$$1
+
 $1+=" -D_FORTIFY_SOURCE=2"
+
 AC_MSG_NOTICE(CPPFLAGS to be used are $$1)
 AC_MSG_NOTICE(placing compiler-dependent CPPFLAGS in $1 ... done)
 AC_MSG_NOTICE(Debug CPPFLAGS to be used are $$2)
@@ -85,18 +91,24 @@ AC_SUBST($1)
 AC_SUBST($2)
 AX_COMPILER_VENDOR
 AX_COMPILER_VERSION
-# The basic starting point.
+
+# The following non-vendor and non-version specific inclusions form the common
+# baseline for this macro from gcc v5.4 and clang 11.
 $1="-g -Wall -Wextra"
+$1+=" -fstack-protector-strong"
+$1+=" -grecord-gcc-switches"
+$1+=" -std=gnu11"
+$1+=" -Wbad-function-cast"
+$1+=" -Wconversion"
+$1+=" -Wdeclaration-after-statement"
+$1+=" -Wformat-security"
+$1+=" -Wmissing-include-dirs"
+$1+=" -Wmissing-prototypes"
+$1+=" -Wredundant-decls"
+$1+=" -Wshadow"
+$1+=" -Wstrict-prototypes"
+
 if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
-	# The following non version specific inclusions form the baseline for
-	# this macro from gcc v5.4
-	$1+=" -fstack-protector-strong"
-	$1+=" -grecord-gcc-switches"
-	$1+=" -std=gnu11"
-	$1+=" -Wbad-function-cast -Wconversion -Wformat-security"
-	$1+=" -Wdeclaration-after-statement"
-	$1+=" -Wmissing-include-dirs -Wmissing-prototypes -Wredundant-decls"
-	$1+=" -Wshadow -Wstrict-prototypes"
 	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "6")
 	if [[ x${ax_compare_version} == xtrue ]]; then
 		$1+=" -fasynchronous-unwind-tables"
@@ -109,23 +121,20 @@ if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
 	fi
 fi
 if [[ $ax_cv_c_compiler_vendor == clang ]]; then
-	# The following non version specific inclusions form the baseline for
+	# The following non-version specific inclusions add to the baseline for
 	# this macro from clang v11.0
-	$1+=" -fstack-protector-strong"
-	$1+=" -grecord-gcc-switches"
-	$1+=" -std=gnu11"
-	$1+=" -Wbad-function-cast -Wconversion -Wformat-security"
-	$1+=" -Wdeclaration-after-statement"
-	$1+=" -Wmissing-include-dirs -Wmissing-prototypes -Wredundant-decls"
-	$1+=" -Wshadow -Wstrict-prototypes"
 	$1+=" -fasynchronous-unwind-tables"
-	$1+=" -Wnull-dereference"
+	$1+=" -fdiagnostics-format=vi"
 	$1+=" -fstack-clash-protection"
+	$1+=" -Wnull-dereference"
 fi
+
 $2=$$1
+
 # Optimisation
 $1+=" -O2"
 $2+=" -ggdb3 -O0"
+
 AC_MSG_NOTICE(CFLAGS to be used are $$1)
 AC_MSG_NOTICE(placing compiler-dependent CFLAGS in $1 ... done)
 AC_MSG_NOTICE(Debug CFLAGS to be used are $$2)
@@ -140,6 +149,7 @@ AC_DEFUN([MG_BUILD_COMPILER_VERSION_ANALYZER_CFLAGS],
 AC_SUBST($1)
 AX_COMPILER_VENDOR
 AX_COMPILER_VERSION
+
 $1=""
 if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
 	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "10")
