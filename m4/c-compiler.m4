@@ -69,7 +69,7 @@ AX_COMPILER_VERSION
 
 # The basic starting point.
 $1="-DHAVE_WINSOCK2_H=0"
-$1=" -Wdate-time"
+$1+=" -Wdate-time"
 
 $2=$$1
 
