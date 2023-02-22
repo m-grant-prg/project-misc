@@ -4,6 +4,10 @@
 # Macro ID: m4extra/c-compiler.m4					#
 # Author: Copyright (C) 2019, 2021-2023  Mark Grant			#
 #									#
+# This file is maintained in the project at:-				#
+#	https://github.com/m-grant-prg/project-misc			#
+#		new versions are merely copied to consumer projects.	#
+#									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
@@ -54,6 +58,8 @@
 # 22/08/2022	MG	1.2.1	Add support for clang from v11.0	#
 # 30/08/2022	MG	1.2.2	Refactor to a common gcc clang baseline.#
 # 22/02/2023	MG	1.2.3	Add Sparse-dependent flags to CPPFLAGS.	#
+#				Add a comment that this file is		#
+#				maintained in another project.		#
 #									#
 #########################################################################
 
