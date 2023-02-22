@@ -2,7 +2,7 @@
 #########################################################################
 #									#
 # Macro ID: m4extra/c-compiler.m4					#
-# Author: Copyright (C) 2019, 2021, 2022  Mark Grant			#
+# Author: Copyright (C) 2019, 2021-2023  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -53,6 +53,7 @@
 #				Checked up to v12.1			#
 # 22/08/2022	MG	1.2.1	Add support for clang from v11.0	#
 # 30/08/2022	MG	1.2.2	Refactor to a common gcc clang baseline.#
+# 22/02/2023	MG	1.2.3	Add Sparse-dependent flags to CPPFLAGS.	#
 #									#
 #########################################################################
 
@@ -70,6 +71,21 @@ AX_COMPILER_VERSION
 # The basic starting point.
 $1="-DHAVE_WINSOCK2_H=0"
 $1+=" -Wdate-time"
+
+# Sparse flags.
+if test "$sparse" = true; then
+	AC_MSG_CHECKING(for Sparse version)
+	sparse_version=m4_esyscmd([ \
+		sed --help 1>/dev/null 2>/dev/null \
+		&& sparse --version \
+			| sed -nre \
+			's/^[^0-9]*(([0-9]+\.)*[0-9]+([-+]rc[0-9]*)?).*/\1/p'])
+	AC_MSG_RESULT($sparse_version)
+	AX_COMPARE_VERSION($sparse_version, ge, "0.4.2")
+	if [[ x${ax_compare_version} == xtrue ]]; then
+		$1+=" -Wno-unknown-attribute"
+	fi
+fi
 
 $2=$$1
 
