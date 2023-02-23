@@ -1,9 +1,13 @@
 #########################################################################
 #									#
 # File ID: ./.clang-format						#
-# Author: Copyright (C) 2019, 2021  Mark Grant				#
+# Author: Copyright (C) 2019, 2021, 2023  Mark Grant			#
 # 	Originally based on Linux kernel 06/06/2019			#
 # 									#
+# This file is maintained in the project at:-				#
+#	https://github.com/m-grant-prg/project-misc			#
+#		new versions are merely copied to consumer projects.	#
+#									#
 # Written for clang-format version 9					#
 #									#
 # Released under the GPLv3 only.					#
@@ -19,6 +23,8 @@
 #									#
 # 08/06/2019	MG	1.0.1	First release.				#
 # 21/11/2021	MG	1.0.2	Tighten SPDX tag.			#
+# 23/02/2023	MG	1.0.3	Add a comment that this file is		#
+#				maintained in another project.		#
 #									#
 #########################################################################
 
