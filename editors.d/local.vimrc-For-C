@@ -42,17 +42,24 @@
 "				entire buffer commands for clang-format."
 " 23/02/2023	MG	1.0.3	Add a comment that this file is		"
 "				maintained in another project.		"
+" 14/07/2023	MG	1.0.4	clang-format.py may be installed in	"
+"				different locations depending on distro."
 "									"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Setup clang-format.
 " -------------------
+" The script is installed in different places on different distros
+let $clang_format_py_location = "/usr/share/vim/addons/syntax/clang-format.py"
+if filereadable("/usr/share/clang/clang-format.py")
+	let $clang_format_py_location = "/usr/share/clang/clang-format.py"
+endif
 " Current line / Visual block.
-imap <C-K> :py3f /usr/share/vim/addons/syntax/clang-format.py<cr>
-nmap <C-K> :py3f /usr/share/vim/addons/syntax/clang-format.py<cr>
-vmap <C-K> :py3f /usr/share/vim/addons/syntax/clang-format.py<cr>
+imap <C-K> :py3f $clang_format_py_location<cr>
+nmap <C-K> :py3f $clang_format_py_location<cr>
+vmap <C-K> :py3f $clang_format_py_location<cr>
 " Current block.
-nmap <C-K><C-K> [{V]}:py3f /usr/share/vim/addons/syntax/clang-format.py<cr>''
+nmap <C-K><C-K> [{V]}:py3f $clang_format_py_location<cr>''
 " Entire buffer
-nmap <C-K><C-K><C-K> ggVG:py3f /usr/share/vim/addons/syntax/clang-format.py<cr>''
+nmap <C-K><C-K><C-K> ggVG:py3f $clang_format_py_location<cr>''
 
