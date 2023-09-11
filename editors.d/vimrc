@@ -34,8 +34,10 @@
 " Date		Author	Version	Description				"
 "									"
 " 03/11/2021	MG	1.0.1	Initial release.			"
-" 23/02/2023	MG	1.0.2	Add a comment that this file is		"
+" 09/08/2022	MG	1.0.2	Add editorconfig plugin.		"
+" 23/02/2023	MG	1.0.3	Add a comment that this file is		"
 "				maintained in another project.		"
+" 11/09/2023	MG	1.0.4	Add python setup.			"
 "									"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -84,6 +86,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'yegappan/taglist'		" Invoke with Tlist
 Plug 'thinca/vim-localrc'
 Plug 'editorconfig/editorconfig-vim'
+" Python
+Plug 'vim-scripts/indentpython.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
 " Colorschemes
 Plug 'toupeira/vim-desertink'
 Plug 'agude/vim-eldar'
