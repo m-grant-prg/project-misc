@@ -38,6 +38,7 @@
 " 23/02/2023	MG	1.0.3	Add a comment that this file is		"
 "				maintained in another project.		"
 " 11/09/2023	MG	1.0.4	Add python setup.			"
+"				Add vim-plug plugin removal comment.	"
 "									"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -75,10 +76,11 @@ autocmd FileType gitcommit setlocal textwidth=72
 
 " Plugins managed by vim-plug
 " To install a plugin, enter it's GitHub location below, restart vim and
-" :PlugInstall
-" To upgrade vim-plug itself :PlugUpgrade
-" To upgrade other plugins :PlugUpdate
-" ------------------------------------
+" run :PlugInstall
+" To upgrade vim-plug itself run :PlugUpgrade
+" To upgrade other plugins run :PlugUpdate
+" To remove a plugin, delete it from the list, restart vim and run :PlugClean
+" ---------------------------------------------------------------------------
 call plug#begin()
 Plug 'preservim/NERDTree'
 Plug 'frazrepo/vim-rainbow'
