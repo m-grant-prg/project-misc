@@ -39,6 +39,8 @@
 "				maintained in another project.		"
 " 11/09/2023	MG	1.0.4	Add python setup.			"
 "				Add vim-plug plugin removal comment.	"
+" 29/10/2023	MG	1.0.5	If using pipx installed grip, add the	"
+"				user's local bin directory to the PATH.	"
 "									"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -200,4 +202,10 @@ function! OpenMarkdownPreview() abort
 	let s:markdown_job_id = job_start("grip -b -",
 		\ {'in_io': 'buffer', 'in_name': bufname("%") })
 endfunction
+
+" Debian does not supply a grip package so it is installed with pipx which
+" places it in the user's local bin directory which must be added to the PATH.
+if filereadable($HOME."/.local/bin/grip")
+	let $PATH = $PATH.':'.$HOME.'/.local/bin'
+endif
 
