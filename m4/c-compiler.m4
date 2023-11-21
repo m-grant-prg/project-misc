@@ -1,7 +1,6 @@
 #! /usr/bin/env bash
 #########################################################################
 #									#
-# Macro ID: m4extra/c-compiler.m4					#
 # Author: Copyright (C) 2019, 2021-2023  Mark Grant			#
 #									#
 # This file is maintained in the project at:-				#
@@ -23,43 +22,12 @@
 
 #########################################################################
 #									#
-# Changelog								#
+# Script version	v1.3.0						#
 #									#
-# Date		Author	Version	Description				#
-#									#
-# 10/02/2019	MG	1.0.1	Initial release. Checked up to gcc v8.2	#
-# 02/03/2019	MG	1.0.2	Change file name to c-compiler.m4	#
-# 05/05/2019	MG	1.0.3	Remove manual specification of implicit	#
-#				fallthrough from v7 as it is included	#
-#				in Wextra.				#
-#				Establish baseline warnings as of	#
-#				gcc v6.3				#
-#				Checked up to v9.1			#
-# 16/06/2019	MG	1.0.4	Backported to gcc v5 to facilitate use	#
-#				with xenial build VMs on Travis CI.	#
-# 24/07/2021	MG	1.0.5	Add Wformat-security			#
-#				Add fasynchronous-unwind-tables		#
-#				Add -fstack-clash-protection		#
-#				Checked up to v11.1			#
-# 25/07/2021	MG	1.0.6	Add g to always provide some debug	#
-#				information.				#
-#				Add grecord-gcc-switches		#
-# 26/07/2021	MG	1.0.7	Add function for preprocessor flags.	#
-# 28/09/2021	MG	1.0.8	Specify gcc starting point -std=gnu11	#
-#				to satisfy sparse, but this allows	#
-#				mixed declarations and code, so		#
-#				re-introduce that warning.		#
-# 14/10/2021	MG	1.0.9	Specify macro HAVE_WINSOCK2_H as false.	#
-# 05/11/2021	MG	1.0.10	Create debug versions of flags.		#
-# 21/11/2021	MG	1.0.11	Tighten SPDX tag.			#
-# 06/06/2022	MG	1.1.1	Add gcc analyzer CFLAGS.		#
-#				Create new namespace MG_.		#
-#				Checked up to v12.1			#
-# 22/08/2022	MG	1.2.1	Add support for clang from v11.0	#
-# 30/08/2022	MG	1.2.2	Refactor to a common gcc clang baseline.#
-# 22/02/2023	MG	1.2.3	Add Sparse-dependent flags to CPPFLAGS.	#
-#				Add a comment that this file is		#
-#				maintained in another project.		#
+# Checked up to:-							#
+#			gcc v12						#
+#			clang v11					#
+#			sparse v0.64					#
 #									#
 #########################################################################
 

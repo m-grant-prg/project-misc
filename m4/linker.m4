@@ -1,7 +1,6 @@
 #! /usr/bin/env bash
 #########################################################################
 #									#
-# Macro ID: m4extra/linker.m4						#
 # Author: Copyright (C) 2021-2023  Mark Grant				#
 #									#
 # This file is maintained in the project at:-				#
@@ -18,15 +17,7 @@
 
 #########################################################################
 #									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 26/07/2021	MG	1.0.1	Initial release.			#
-# 21/11/2021	MG	1.0.2	Tighten SPDX tag.			#
-# 06/06/2022	MG	1.1.1	Add MG_ namespace.			#
-# 22/02/2023	MG	1.1.2	Add a comment that this file is		#
-#				maintained in another project.		#
+# Script version	v1.2.0						#
 #									#
 #########################################################################
 
