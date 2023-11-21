@@ -26,7 +26,7 @@
 #									#
 # Checked up to:-							#
 #			gcc v12						#
-#			clang v11					#
+#			clang v14					#
 #			sparse v0.64					#
 #									#
 #########################################################################
@@ -92,22 +92,43 @@ $1+=" -Wbad-function-cast"
 $1+=" -Wconversion"
 $1+=" -Wdeclaration-after-statement"
 $1+=" -Wformat-security"
+$1+=" -Wmissing-declarations"
 $1+=" -Wmissing-include-dirs"
 $1+=" -Wmissing-prototypes"
+$1+=" -Wnested-externs"
+$1+=" -Woverlength-strings"
+$1+=" -Wpointer-arith"
 $1+=" -Wredundant-decls"
 $1+=" -Wshadow"
+# Wstack-protector is probably the way to go but the correct solution to the
+# warning requires careful consideration.
+# $1+=" -Wstack-protector"
 $1+=" -Wstrict-prototypes"
+$1+=" -Wswitch-default"
+$1+=" -Wwrite-strings"
 
 if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
+	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "5")
+	if [[ x${ax_compare_version} == xtrue ]]; then
+		$1+=" -Wformat-signedness"
+		$1+=" -Wlogical-op"
+		$1+=" -Wsuggest-attribute=const"
+	fi
 	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "6")
 	if [[ x${ax_compare_version} == xtrue ]]; then
 		$1+=" -fasynchronous-unwind-tables"
-		$1+=" -Wduplicated-cond -Wnull-dereference"
+		$1+=" -Wduplicated-cond"
+		$1+=" -Wnull-dereference"
+	fi
+	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "7")
+	if [[ x${ax_compare_version} == xtrue ]]; then
+		$1+=" -Wduplicated-branches"
 	fi
 	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "8")
 	if [[ x${ax_compare_version} == xtrue ]]; then
 		$1+=" -fstack-clash-protection"
 		$1+=" -Wmultistatement-macros"
+		$1+=" -Wsuggest-attribute=malloc"
 	fi
 fi
 if [[ $ax_cv_c_compiler_vendor == clang ]]; then
