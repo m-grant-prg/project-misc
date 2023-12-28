@@ -1,6 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "									"
-" File ID: ./.local.vimrc						"
 " Author: Copyright (C) 2021-2023  Mark Grant				"
 "									"
 " This file is maintained in the project at:-				"
@@ -33,19 +32,10 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "									"
-" Changelog								"
-"									"
-" Date		Author	Version	Description				"
-"									"
-" 03/11/2021	MG	1.0.1	Initial release.			"
-" 24/03/2022	MG	1.0.2	Segregate line and visual, block and	"
-"				entire buffer commands for clang-format."
-" 23/02/2023	MG	1.0.3	Add a comment that this file is		"
-"				maintained in another project.		"
-" 14/07/2023	MG	1.0.4	clang-format.py may be installed in	"
-"				different locations depending on distro."
+" Version	v1.0.5							"
 "									"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " Setup clang-format.
 " -------------------

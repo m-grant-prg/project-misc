@@ -1,6 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "									"
-" File ID: ~/.vimrc							"
 " Author: Copyright (C) 2021-2023  Mark Grant				"
 "									"
 " This file is maintained in the project at:-				"
@@ -29,20 +28,10 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "									"
-" Changelog								"
-"									"
-" Date		Author	Version	Description				"
-"									"
-" 03/11/2021	MG	1.0.1	Initial release.			"
-" 09/08/2022	MG	1.0.2	Add editorconfig plugin.		"
-" 23/02/2023	MG	1.0.3	Add a comment that this file is		"
-"				maintained in another project.		"
-" 11/09/2023	MG	1.0.4	Add python setup.			"
-"				Add vim-plug plugin removal comment.	"
-" 29/10/2023	MG	1.0.5	If using pipx installed grip, add the	"
-"				user's local bin directory to the PATH.	"
+" Version	v1.0.6							"
 "									"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " Indentation
 " -----------
