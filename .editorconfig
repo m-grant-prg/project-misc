@@ -1,6 +1,5 @@
 #########################################################################
 #									#
-# File ID: ./.editorconfig						#
 # Author: Copyright (C) 2022, 2023  Mark Grant				#
 #									#
 # This file is maintained in the project at:-				#
@@ -14,15 +13,7 @@
 
 #########################################################################
 #									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 09/08/2022	MG	1.0.1	Initial version.			#
-# 09/08/2022	MG	1.0.2	Add YAML.				#
-# 09/08/2022	MG	1.0.3	Add trim_trailing_whitespace.		#
-# 23/02/2023	MG	1.0.4	Add a comment that this file is		#
-#				maintained in another project.		#
+# Version	v1.0.5							#
 #									#
 #########################################################################
 
