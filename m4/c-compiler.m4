@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 #########################################################################
 #									#
-# Author: Copyright (C) 2019, 2021-2023  Mark Grant			#
+# Author: Copyright (C) 2019, 2021-2024  Mark Grant			#
 #									#
 # This file is maintained in the project at:-				#
 #	https://github.com/m-grant-prg/project-misc			#
@@ -22,10 +22,10 @@
 
 #########################################################################
 #									#
-# Script version	v1.3.0						#
+# Script version	v1.3.1						#
 #									#
 # Checked up to:-							#
-#			gcc v12						#
+#			gcc v14						#
 #			clang v14					#
 #			sparse v0.64					#
 #									#
@@ -87,7 +87,6 @@ AX_COMPILER_VERSION
 $1="-g -Wall -Wextra"
 $1+=" -fstack-protector-strong"
 $1+=" -grecord-gcc-switches"
-$1+=" -std=gnu11"
 $1+=" -Wbad-function-cast"
 $1+=" -Wconversion"
 $1+=" -Wdeclaration-after-statement"
@@ -130,10 +129,20 @@ if [[ $ax_cv_c_compiler_vendor == gnu ]]; then
 		$1+=" -Wmultistatement-macros"
 		$1+=" -Wsuggest-attribute=malloc"
 	fi
+	AX_COMPARE_VERSION($ax_cv_c_compiler_version, lt, "8")
+	if [[ x${ax_compare_version} == xtrue ]]; then
+		$1+=" -std=gnu11"
+	fi
+	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "8")
+	if [[ x${ax_compare_version} == xtrue ]]; then
+		$1+=" -std=gnu17"
+	fi
 fi
 if [[ $ax_cv_c_compiler_vendor == clang ]]; then
+
 	# The following non-version specific inclusions add to the baseline for
 	# this macro from clang v11.0
+	$1+=" -std=gnu17"
 	$1+=" -fasynchronous-unwind-tables"
 	$1+=" -fdiagnostics-format=vi"
 	$1+=" -fstack-clash-protection"
