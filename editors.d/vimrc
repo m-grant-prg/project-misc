@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "									"
-" Author: Copyright (C) 2021-2023  Mark Grant				"
+" Author: Copyright (C) 2021-2024  Mark Grant				"
 "									"
 " This file is maintained in the project at:-				"
 "	https://github.com/m-grant-prg/project-misc			"
@@ -28,7 +28,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "									"
-" Version	v1.0.6							"
+" Version	v1.0.7							"
 "									"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -87,7 +87,6 @@ Plug 'nvie/vim-flake8'
 " Colorschemes
 Plug 'toupeira/vim-desertink'
 Plug 'agude/vim-eldar'
-Plug 'gvee-s/simo-zz-2'
 Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
