@@ -59,6 +59,10 @@ if test "$sparse" = true; then
 	if [[ x${ax_compare_version} == xtrue ]]; then
 		$1+=" -Wno-unknown-attribute"
 	fi
+	AX_COMPARE_VERSION($sparse_version, ge, "0.6.4")
+	if [[ x${ax_compare_version} == xtrue ]]; then
+		$1+=" -Wno-default-bitfield-sign"
+	fi
 fi
 
 $2=$$1
