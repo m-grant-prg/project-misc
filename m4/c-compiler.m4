@@ -22,11 +22,11 @@
 
 #########################################################################
 #									#
-# Script version	v1.3.2						#
+# Script version	v1.3.3						#
 #									#
 # Checked up to:-							#
 #			gcc v14						#
-#			clang v14					#
+#			clang v19					#
 #			sparse v0.6.4					#
 #									#
 #########################################################################
@@ -148,7 +148,6 @@ if [[ $ax_cv_c_compiler_vendor == clang ]]; then
 	# this macro from clang v11.0
 	$1+=" -std=gnu17"
 	$1+=" -fasynchronous-unwind-tables"
-	$1+=" -fdiagnostics-format=vi"
 	$1+=" -fstack-clash-protection"
 	$1+=" -Wnull-dereference"
 fi
